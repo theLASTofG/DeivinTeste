@@ -1,6 +1,6 @@
 import type { GameState, Buff } from "./Player";
 import { roll } from "./RNG";
-import { recalcEntropyPerSecond } from "./Player";
+import { recalcEntropyPerSecond, recalcInstability } from "./Player";
 import { generateRelic } from "./Loot";
 
 export interface GameEvent {
@@ -39,6 +39,7 @@ const EVENTS: GameEvent[] = [
     apply(state: GameState): string {
       const relic = generateRelic();
       state.relics.push(relic);
+      recalcInstability(state);
       recalcEntropyPerSecond(state);
       return `🌀 Dimensional Tear! Found relic: ${relic.name} [${relic.rarity}]`;
     },

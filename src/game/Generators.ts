@@ -1,5 +1,5 @@
 import type { GameState } from "./Player";
-import { getGeneratorCost, recalcEntropyPerSecond } from "./Player";
+import { getGeneratorCost, recalcEntropyPerSecond, recalcInstability } from "./Player";
 
 export function buyGenerator(state: GameState, index: number): boolean {
   const gen = state.generators[index];
@@ -11,8 +11,7 @@ export function buyGenerator(state: GameState, index: number): boolean {
   state.entropy -= cost;
   gen.owned += 1;
 
-  state.instability = 1 + state.generators.reduce((a, g) => a + g.owned, 0) * 0.01;
-
+  recalcInstability(state);
   recalcEntropyPerSecond(state);
   return true;
 }

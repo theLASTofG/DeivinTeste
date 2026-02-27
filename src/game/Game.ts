@@ -3,6 +3,7 @@ import {
   createInitialState,
   getGlobalMultiplier,
   recalcEntropyPerSecond,
+  recalcInstability,
 } from "./Player";
 import { buyGenerator } from "./Generators";
 import { checkEvents, updateBuffs } from "./Events";
@@ -108,6 +109,9 @@ export class Game {
     const produced = this.state.entropyPerSecond * deltaSec;
     this.state.entropy += produced;
     this.state.totalEntropy += produced;
+
+    // Recalc instability based on total entropy growth
+    recalcInstability(this.state);
 
     // Update buffs
     updateBuffs(this.state, now);

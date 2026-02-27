@@ -66,6 +66,13 @@ export function getGlobalMultiplier(state: GameState): number {
   return fragmentBonus * state.permanentMultiplier * (1 + relicBonus) * buffMultiplier;
 }
 
+export function recalcInstability(state: GameState): void {
+  const generatorCount = state.generators.reduce((a, g) => a + g.owned, 0);
+  const entropyFactor = Math.log10(Math.max(1, state.totalEntropy)) * 0.05;
+  const relicInstability = state.relics.reduce((acc, r) => acc + r.instabilityMod, 0);
+  state.instability = 1 + generatorCount * 0.01 + entropyFactor + relicInstability;
+}
+
 export function recalcEntropyPerSecond(state: GameState): void {
   const baseEps = state.generators.reduce(
     (acc, g) => acc + g.production * g.owned,
