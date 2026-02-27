@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entropy Clicker</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Header -->
+      <header id="header">
+        <h1>⚛️ Entropy Clicker</h1>
+        <div id="stats-bar">
+          <div class="stat">
+            <span class="stat-label">Entropy</span>
+            <span class="stat-value" id="entropy-value">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Per Second</span>
+            <span class="stat-value" id="eps-value">0/s</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Instability</span>
+            <span class="stat-value" id="instability-value">1.00x</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Fragments</span>
+            <span class="stat-value" id="fragments-value">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Multiplier</span>
+            <span class="stat-value" id="multiplier-value">1.00x</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Clicks</span>
+            <span class="stat-value" id="clicks-value">0</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main id="main-content">
+        <!-- Left: Click area + Events -->
+        <section id="click-section">
+          <button id="stabilize-btn">STABILIZE</button>
+          <div id="buffs-section">
+            <h3>Active Buffs</h3>
+            <div id="buffs-list">
+              <span class="empty-text">No active buffs</span>
+            </div>
+          </div>
+          <div id="event-section">
+            <h3>Event Log</h3>
+            <div id="event-log"></div>
+          </div>
+        </section>
+
+        <!-- Right: Generators + Prestige + Relics -->
+        <section id="side-panel">
+          <div id="generators-section">
+            <h3>Generators</h3>
+            <div id="generators-list"></div>
+          </div>
+          <div id="prestige-section">
+            <h3>Prestige</h3>
+            <p id="prestige-info">Need 1.00M entropy to prestige</p>
+            <button id="prestige-btn" disabled>Reset Reality</button>
+          </div>
+          <div id="relics-section">
+            <h3>Relics</h3>
+            <div id="relics-list">
+              <span class="empty-text">No relics found</span>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
