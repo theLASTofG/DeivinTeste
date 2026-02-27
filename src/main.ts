@@ -2,6 +2,7 @@ import { Game } from "./game/Game";
 import { UI } from "./ui/UI";
 
 let ui: UI | null = null;
+const pendingMessages: string[] = [];
 
 const game = new Game((msg: string) => {
   if (ui) {
@@ -10,8 +11,6 @@ const game = new Game((msg: string) => {
     pendingMessages.push(msg);
   }
 });
-
-const pendingMessages: string[] = [];
 
 ui = new UI(game);
 
