@@ -1,13 +1,25 @@
 import { Game } from "./game/Game";
 import { UI } from "./ui/UI";
 
+let ui: UI | null = null;
+
 const game = new Game((msg: string) => {
-  ui.addLogEntry(msg);
+  if (ui) {
+    ui.addLogEntry(msg);
+  } else {
+    pendingMessages.push(msg);
+  }
 });
 
-const ui = new UI(game);
+const pendingMessages: string[] = [];
+
+ui = new UI(game);
 
 document.addEventListener("DOMContentLoaded", () => {
-  ui.init();
+  ui!.init();
+  for (const msg of pendingMessages) {
+    ui!.addLogEntry(msg);
+  }
+  pendingMessages.length = 0;
   game.start();
 });
